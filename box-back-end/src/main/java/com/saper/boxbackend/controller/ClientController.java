@@ -17,9 +17,26 @@ public class ClientController {
         return clientService.getAll();
     }
 
+    @GetMapping("/{id}")
+    public Object getOne(@PathVariable(name = "id") Long id){
+        return clientService.findById(id);
+    }
+
     @PostMapping
     public Object save(@RequestBody ClientRequestDTO clientRequestDTO){
 
         return clientService.save(clientRequestDTO);
+    }
+
+    @PutMapping("/{id}")
+    public Object update(@PathVariable(name = "id") Long id,
+                         @RequestBody ClientRequestDTO clientRequestDTO){
+
+        return clientService.update(id, clientRequestDTO);
+    }
+
+    @DeleteMapping("{id}")
+    public Object delete(@PathVariable(name = "id") Long id){
+        return clientService.delete(id);
     }
 }
